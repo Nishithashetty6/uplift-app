@@ -1,0 +1,113 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Retro Vinyl Palette */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+
+  --bg-color: #2b211e;
+  /* Dark Coffee / Espresso */
+  --text-primary: #e6dace;
+  /* Latte Cream */
+  --text-secondary: #d7ccc8;
+  /* Muted Beige */
+
+  --primary-accent: #d97757;
+  /* Terracotta / Burnt Orange */
+  --secondary-accent: #a1887f;
+  /* Warm Grey */
+  --tertiary-accent: #ffccbc;
+  /* Light Peach */
+
+  --glass-bg: rgba(62, 48, 43, 0.7);
+  /* Brown Glass */
+  --glass-border: rgba(215, 204, 200, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.7;
+  /* Relaxed reading height */
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Updated Glass Panel */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  /* Softer, larger radius */
+  box-shadow: var(--glass-shadow);
+  color: var(--text-primary);
+}
+
+.title-gradient {
+  background: linear-gradient(to right, #efebe9, #d7ccc8);
+  /* Subtle gradient or solid cream */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-primary {
+  background: var(--primary-accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  /* Pill shape */
+  padding: 0.85rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(217, 119, 87, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(217, 119, 87, 0.5);
+  background: #e68a6d;
+  /* Slightly lighter orange */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Nav Link */
+.nav-link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.2s;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-accent);
+}

@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": 1766899608129,
+      "name": "ashu",
+      "email": "nishitha.a.shetty@gmail.com",
+      "password": "ashvitha",
+      "role": "student",
+      "isOnboarded": true,
+      "fullName": "nishitha",
+      "grade": "12",
+      "school": "dsce",
+      "stream": "Science"
+    }
+  ],
+  "posts": []
+}
