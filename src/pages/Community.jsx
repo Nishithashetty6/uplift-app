@@ -23,7 +23,8 @@ export default function Community() {
 
     const fetchPosts = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/posts');
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const res = await fetch(`${API_URL}/api/posts`);
             const data = await res.json();
             setPosts(data);
         } catch (err) {
@@ -41,7 +42,8 @@ export default function Community() {
         if (!newPost.title || !newPost.content) return;
 
         try {
-            const res = await fetch('http://localhost:5000/api/posts', {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const res = await fetch(`${API_URL}/api/posts`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -168,7 +170,8 @@ export default function Community() {
                                             onClick={async () => {
                                                 if (window.confirm("Delete this post?")) {
                                                     try {
-                                                        await fetch(`http://localhost:5000/api/posts/${post.id}`, { method: 'DELETE' });
+                                                        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+                                                        await fetch(`${API_URL}/api/posts/${post.id}`, { method: 'DELETE' });
                                                         setPosts(posts.filter(p => p.id !== post.id));
                                                     } catch (e) { console.error("Delete failed", e); }
                                                 }

@@ -11,6 +11,14 @@
       "grade": "12",
       "school": "dsce",
       "stream": "Science"
+    },
+    {
+      "id": 1767020365614,
+      "name": "ashu",
+      "email": "nishithaashetty96@gmail.com",
+      "password": "ashvita",
+      "role": "student",
+      "isOnboarded": false
     }
   ],
   "posts": []
