@@ -105,7 +105,7 @@ export default function MentalHealth() {
                                 maxWidth: '70%',
                                 padding: '1.5rem',
                                 borderRadius: msg.sender === 'user' ? '1.5rem 1.5rem 0 1.5rem' : '1.5rem 1.5rem 1.5rem 0',
-                                background: msg.sender === 'user' ? 'var(--primary)' : 'rgba(255,255,255,0.1)',
+                                background: msg.sender === 'user' ? 'var(--primary-accent)' : 'rgba(255,255,255,0.1)',
                                 color: 'white',
                                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
                             }}>

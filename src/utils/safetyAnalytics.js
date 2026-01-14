@@ -5,9 +5,22 @@ export const SAFETY_KEYWORDS = {
     ],
     DISTRESS: [
         'overwhelmed', 'panic', 'anxiety attack', 'cant breathe', 'can\'t breathe',
-        'fail', 'failure', 'useless', 'worthless', 'giving up', 'depressed'
+        'fail', 'failing', 'failed', 'failure', 'useless', 'worthless', 'giving up', 'depressed'
     ]
 };
+
+export const SAFE_CONTEXTS = [
+    'suicide prevention',
+    'not depressed',
+    'without fail',
+    'no fail',
+    'not fail',
+    'never fail',
+    'panic at the disco',
+    'don\'t want to die',
+    'dont want to die',
+    'not hopeless'
+];
 
 /**
  * Analyzes text for safety risks.
@@ -17,18 +30,38 @@ export const SAFETY_KEYWORDS = {
 export const analyzeRisk = (text) => {
     if (!text) return { level: 'LOW', triggers: [] };
 
-    const lowerText = text.toLowerCase();
+    let cleanedText = text.toLowerCase();
+
+    // Remove safe contexts from analysis
+    SAFE_CONTEXTS.forEach(context => {
+        cleanedText = cleanedText.replace(new RegExp(context, 'gi'), ' ');
+    });
+
     const triggers = [];
 
+    // Helper to check keywords with word boundaries
+    const checkKeywords = (keywords) => {
+        for (const k of keywords) {
+            // Escape special regex chars if any, though our keywords are simple
+            const esc = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            // Look for whole word match
+            const regex = new RegExp(`\\b${esc}\\b`, 'i');
+            if (regex.test(cleanedText)) {
+                return k;
+            }
+        }
+        return null;
+    };
+
     // Check High Risk (Crisis)
-    const crisisMatch = SAFETY_KEYWORDS.CRISIS.find(k => lowerText.includes(k));
+    const crisisMatch = checkKeywords(SAFETY_KEYWORDS.CRISIS);
     if (crisisMatch) {
         triggers.push(crisisMatch);
         return { level: 'HIGH', triggers };
     }
 
     // Check Moderate Risk (Distress)
-    const distressMatch = SAFETY_KEYWORDS.DISTRESS.find(k => lowerText.includes(k));
+    const distressMatch = checkKeywords(SAFETY_KEYWORDS.DISTRESS);
     if (distressMatch) {
         triggers.push(distressMatch);
         return { level: 'MODERATE', triggers };

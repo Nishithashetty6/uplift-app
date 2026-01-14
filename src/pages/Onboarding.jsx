@@ -108,7 +108,7 @@ export default function Onboarding() {
 const labelStyle = {
     display: 'block',
     marginBottom: '0.5rem',
-    color: '#475569',
+    color: 'var(--text-secondary)',
     fontWeight: '500'
 };
 

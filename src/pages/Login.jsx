@@ -17,8 +17,8 @@ export default function Login() {
             setLoading(true);
             await login(email, password);
             navigate('/dashboard'); // Redirect to dashboard after login
-        } catch {
-            setError('Failed to log in');
+        } catch (err) {
+            setError(err.message);
         }
         setLoading(false);
     };

@@ -48,7 +48,7 @@ export default function WelcomeCarousel({ onComplete }) {
             <h2 style={{
                 fontSize: '2rem',
                 marginBottom: '1rem',
-                color: '#1e293b',
+                color: 'var(--text-primary)',
                 fontWeight: '700'
             }}>
                 {slides[current].title}
@@ -56,7 +56,7 @@ export default function WelcomeCarousel({ onComplete }) {
 
             <p style={{
                 fontSize: '1.2rem',
-                color: '#64748b',
+                color: 'var(--text-secondary)',
                 marginBottom: '3rem',
                 minHeight: '60px'
             }}>

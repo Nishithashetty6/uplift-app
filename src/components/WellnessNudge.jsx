@@ -1,15 +1,8 @@
 import { useState, useEffect } from 'react';
 
 export default function WellnessNudge({ type, onAction, onClose }) {
-    const [visible, setVisible] = useState(false);
-
-    useEffect(() => {
-        setVisible(true);
-        const timer = setTimeout(() => setVisible(false), 10000); // Auto hide after 10s
-        return () => clearTimeout(timer);
-    }, []);
-
-    if (!visible) return null;
+    // Rely on parent conditional rendering instead of local state
+    // This ensures it always appears when parent renders it
 
     const content = {
         stress: {
@@ -51,7 +44,7 @@ export default function WellnessNudge({ type, onAction, onClose }) {
             >
                 {data.action}
             </button>
-            <button onClick={() => setVisible(false)} style={{ background: 'transparent', border: 'none', color: '#cbd5e1', cursor: 'pointer' }}>×</button>
+            <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#cbd5e1', cursor: 'pointer' }}>×</button>
         </div>
     );
 }

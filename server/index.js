@@ -25,7 +25,11 @@ const getDb = async () => {
 };
 
 const saveDb = async (data) => {
-    await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2));
+    try {
+        await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2));
+    } catch (e) {
+        console.warn("Failed to write to DB (Read-only filesystem?):", e.message);
+    }
 };
 
 // --- AUTH ROUTES ---
@@ -128,4 +132,8 @@ app.delete('/api/posts/:id', async (req, res) => {
 
 // Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+export default app;

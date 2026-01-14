@@ -34,11 +34,13 @@ export function AuthProvider({ children }) {
 
     const login = async (email, password) => {
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const API_URL = import.meta.env.VITE_API_URL || '';
             const res = await fetch(`${API_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
+            }).catch(err => {
+                throw new Error('Server unreachable. Is the backend running?');
             });
 
             if (!res.ok) throw new Error('Login failed');
@@ -56,11 +58,13 @@ export function AuthProvider({ children }) {
 
     const signup = async (name, email, password) => {
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const API_URL = import.meta.env.VITE_API_URL || '';
             const res = await fetch(`${API_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, password })
+            }).catch(err => {
+                throw new Error('Server unreachable. Is the backend running?');
             });
 
             if (!res.ok) throw new Error('Signup failed');
@@ -78,7 +82,7 @@ export function AuthProvider({ children }) {
 
     const updateUser = async (id, updates) => {
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const API_URL = import.meta.env.VITE_API_URL || '';
             const res = await fetch(`${API_URL}/api/users/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -88,6 +92,7 @@ export function AuthProvider({ children }) {
             const updatedUser = await res.json();
             setUser(updatedUser);
             localStorage.setItem('upLift_user', JSON.stringify(updatedUser)); // Update cache
+            return updatedUser;
         } catch (error) {
             console.error(error);
             throw error;
