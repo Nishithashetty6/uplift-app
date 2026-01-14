@@ -58,6 +58,11 @@ export const chatResponses = {
         "Tailor your resume for each application. Quality over quantity.",
         "Rejection is just redirection to something better."
     ],
+    tech: [
+        "To become a Software Engineer, focus on fundamentals: HTML, CSS, JavaScript (frontend) or Python/Java/Node.js (backend).",
+        "Build projects! A clone of a popular app or a personal portfolio is the best way to learn and show skills.",
+        "Key skills for Software Engineering: Problem solving, Git/Version Control, and one major framework like React."
+    ],
 
     // Default
     default: [
@@ -76,10 +81,17 @@ export const findResponse = (input) => {
         return { type: 'crisis', text: "It sounds like you're going through a really hard time. Please reach out to a professional who can help you safely." };
     }
 
+    const techKeywords = ['software', 'developer', 'coding', 'programming', 'engineer', 'tech', 'stack', 'frontend', 'backend'];
+
     // Check Categories
     for (const [key, responses] of Object.entries(chatResponses)) {
         if (key === 'crisis' || key === 'default') continue;
-        if (lowerInput.includes(key) || (key === 'anxiety' && lowerInput.includes('anxious'))) {
+
+        let match = lowerInput.includes(key);
+        if (key === 'anxiety' && lowerInput.includes('anxious')) match = true;
+        if (key === 'tech' && techKeywords.some(k => lowerInput.includes(k))) match = true;
+
+        if (match) {
             // Return random response from category
             return { type: 'text', text: responses[Math.floor(Math.random() * responses.length)] };
         }
