@@ -24,9 +24,11 @@ export default function MarketAnalytics({ stats }) {
 
             <div>
                 <h4 style={{ marginBottom: '1rem', color: '#e2e8f0' }}>Salary Trend (Simulated)</h4>
-                <div style={{ display: 'flex', alignItems: 'flex-end', height: '150px', gap: '1rem', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+
+                {/* Graph Area */}
+                <div style={{ display: 'flex', alignItems: 'flex-end', height: '150px', gap: '1rem', marginBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
                     {stats.chartData.map((val, i) => (
-                        <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                        <div key={i} style={{ flex: 1, height: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                             <div style={{
                                 width: '100%',
                                 background: 'linear-gradient(to top, #6366f1, #c084fc)',
@@ -35,7 +37,15 @@ export default function MarketAnalytics({ stats }) {
                                 opacity: 0.8,
                                 transition: 'height 0.5s ease-out'
                             }}></div>
-                            <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Yr {i + 1}</span>
+                        </div>
+                    ))}
+                </div>
+
+                {/* X-Axis Labels */}
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    {stats.chartData.map((_, i) => (
+                        <div key={i} style={{ flex: 1, textAlign: 'center', fontSize: '0.8rem', color: '#94a3b8' }}>
+                            Yr {i + 1}
                         </div>
                     ))}
                 </div>
