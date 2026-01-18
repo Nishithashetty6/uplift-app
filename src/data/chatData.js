@@ -68,6 +68,16 @@ export const chatResponses = {
         "It's a long journey but rewarding! Start by gaining research experience and volunteering in mental health settings.",
         "Key skills for Psychologists: Empathy, active listening, critical thinking, and patience are essential."
     ],
+    art: [
+        "To become a Digital Artist, start by mastering fundamentals like color theory and anatomy.",
+        "Practice is key! Build a portfolio on ArtStation or Behance to showcase your work.",
+        "Tools of the trade: Get comfortable with software like Photoshop, Procreate, or Blender."
+    ],
+    eng: [
+        "Robotics Engineering requires a strong foundation in Math, Physics, and Computer Science.",
+        "Get hands-on! Start with Arduino or Raspberry Pi projects to learn about sensors and motors.",
+        "It's a multidisciplinary field merging Mechanical, Electrical, and Software engineering."
+    ],
 
     // Default
     default: [
@@ -86,8 +96,10 @@ export const findResponse = (input) => {
         return { type: 'crisis', text: "It sounds like you're going through a really hard time. Please reach out to a professional who can help you safely." };
     }
 
-    const techKeywords = ['software', 'developer', 'coding', 'programming', 'engineer', 'tech', 'stack', 'frontend', 'backend'];
+    const techKeywords = ['software engineer', 'developer', 'coding', 'programming', 'tech', 'stack', 'frontend', 'backend'];
     const psychKeywords = ['psychologist', 'psychology', 'therapist', 'clinical', 'counseling', 'mental health career'];
+    const artKeywords = ['art', 'artist', 'digital art', 'design', 'creative', 'draw', 'illustration', 'animator', 'paint', 'painting'];
+    const engKeywords = ['robotics', 'mechanical', 'electrical', 'hardware', 'automation', 'robot', 'arduino'];
 
     // Check Categories
     for (const [key, responses] of Object.entries(chatResponses)) {
@@ -97,6 +109,8 @@ export const findResponse = (input) => {
         if (key === 'anxiety' && lowerInput.includes('anxious')) match = true;
         if (key === 'tech' && techKeywords.some(k => lowerInput.includes(k))) match = true;
         if (key === 'psych' && psychKeywords.some(k => lowerInput.includes(k))) match = true;
+        if (key === 'art' && artKeywords.some(k => lowerInput.includes(k))) match = true;
+        if (key === 'eng' && engKeywords.some(k => lowerInput.includes(k))) match = true;
 
         if (match) {
             // Return random response from category
