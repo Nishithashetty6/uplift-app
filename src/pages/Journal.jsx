@@ -53,8 +53,13 @@ export default function Journal() {
         setSelectedMood(null);
     };
 
+    const deletePost = (id) => {
+        setPosts(posts.filter(p => p.id !== id));
+    };
+
     const { wellnessStats } = useJourney();
     const streak = wellnessStats.streak;
+
 
     return (
         <div className="container" style={{ maxWidth: '800px', margin: '0 auto', paddingBottom: '4rem' }}>
@@ -163,14 +168,35 @@ export default function Journal() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 {posts.map(post => (
-                    <div key={post.id} className="glass-panel" style={{ padding: '2rem', background: 'rgba(255,255,255,0.6)' }}>
+                    <div key={post.id} className="glass-panel" style={{ padding: '2rem', background: 'rgba(255,255,255,0.05)', position: 'relative' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', alignItems: 'center' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <span style={{ fontSize: '1.5rem' }}>{post.mood || '😐'}</span>
-                                <span style={{ color: '#64748b', fontSize: '0.9rem', fontWeight: '500' }}>{post.date}</span>
+                                <span style={{ color: '#94a3b8', fontSize: '0.9rem', fontWeight: '500' }}>{post.date}</span>
                             </div>
+                            <button
+                                onClick={() => deletePost(post.id)}
+                                style={{
+                                    background: 'transparent',
+                                    border: 'none',
+                                    color: '#64748b',
+                                    cursor: 'pointer',
+                                    fontSize: '1.2rem',
+                                    padding: '0.5rem',
+                                    borderRadius: '50%',
+                                    transition: 'all 0.2s',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                                onMouseOver={(e) => { e.currentTarget.style.color = '#ef4444'; e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; }}
+                                onMouseOut={(e) => { e.currentTarget.style.color = '#64748b'; e.currentTarget.style.background = 'transparent'; }}
+                                title="Delete Entry"
+                            >
+                                🗑️
+                            </button>
                         </div>
-                        <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#334155', whiteSpace: 'pre-wrap' }}>
+                        <p style={{ fontSize: '1.1rem', lineHeight: '1.7', color: '#e2e8f0', whiteSpace: 'pre-wrap' }}>
                             {post.content}
                         </p>
                     </div>
