@@ -164,7 +164,7 @@ export default function Journal() {
             </div>
 
             {/* Past Entries */}
-            <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem', color: '#1e293b' }}>Reflection History</h2>
+            <h2 className="title-gradient" style={{ marginBottom: '1.5rem', fontSize: '1.5rem' }}>Reflection History</h2>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 {posts.map(post => (
