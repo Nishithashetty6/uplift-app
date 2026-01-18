@@ -72,6 +72,10 @@ export default function MentalHealth() {
         }
     };
 
+    const deleteMessage = (id) => {
+        setMessages((prev) => prev.filter(msg => msg.id !== id));
+    };
+
     return (
         <div className="container" style={{ maxWidth: '900px', margin: '0 auto', height: 'calc(100vh - 150px)', display: 'flex', flexDirection: 'column' }}>
 
@@ -107,8 +111,34 @@ export default function MentalHealth() {
                                 borderRadius: msg.sender === 'user' ? '1.5rem 1.5rem 0 1.5rem' : '1.5rem 1.5rem 1.5rem 0',
                                 background: msg.sender === 'user' ? 'var(--primary-accent)' : 'rgba(255,255,255,0.1)',
                                 color: 'white',
-                                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                                position: 'relative'
                             }}>
+                                <button
+                                    onClick={() => deleteMessage(msg.id)}
+                                    style={{
+                                        position: 'absolute',
+                                        top: '0.5rem',
+                                        right: '0.5rem',
+                                        background: 'rgba(0,0,0,0.2)',
+                                        border: 'none',
+                                        borderRadius: '50%',
+                                        width: '20px',
+                                        height: '20px',
+                                        color: 'rgba(255,255,255,0.7)',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: '10px',
+                                        transition: 'background 0.2s'
+                                    }}
+                                    onMouseOver={(e) => e.target.style.background = 'rgba(239, 68, 68, 0.8)'}
+                                    onMouseOut={(e) => e.target.style.background = 'rgba(0,0,0,0.2)'}
+                                    title="Delete entry"
+                                >
+                                    ✕
+                                </button>
                                 <div style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>{msg.text}</div>
                                 <div style={{ fontSize: '0.75rem', opacity: 0.7, marginTop: '0.5rem', textAlign: 'right' }}>
                                     {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
