@@ -63,6 +63,11 @@ export const chatResponses = {
         "Build projects! A clone of a popular app or a personal portfolio is the best way to learn and show skills.",
         "Key skills for Software Engineering: Problem solving, Git/Version Control, and one major framework like React."
     ],
+    psych: [
+        "To become a Clinical Psychologist, you'll need a Bachelor's degree, followed by a PhD or PsyD, and state licensure.",
+        "It's a long journey but rewarding! Start by gaining research experience and volunteering in mental health settings.",
+        "Key skills for Psychologists: Empathy, active listening, critical thinking, and patience are essential."
+    ],
 
     // Default
     default: [
@@ -82,6 +87,7 @@ export const findResponse = (input) => {
     }
 
     const techKeywords = ['software', 'developer', 'coding', 'programming', 'engineer', 'tech', 'stack', 'frontend', 'backend'];
+    const psychKeywords = ['psychologist', 'psychology', 'therapist', 'clinical', 'counseling', 'mental health career'];
 
     // Check Categories
     for (const [key, responses] of Object.entries(chatResponses)) {
@@ -90,6 +96,7 @@ export const findResponse = (input) => {
         let match = lowerInput.includes(key);
         if (key === 'anxiety' && lowerInput.includes('anxious')) match = true;
         if (key === 'tech' && techKeywords.some(k => lowerInput.includes(k))) match = true;
+        if (key === 'psych' && psychKeywords.some(k => lowerInput.includes(k))) match = true;
 
         if (match) {
             // Return random response from category
